@@ -112,7 +112,7 @@ const AssignmentDetailsPage = () => {
     try {
       const formData = new FormData();
       formData.append('text', submitText);
-      if (submitFile) formData.append('file', submitFile);
+      if (submitFile) formData.append('files', submitFile);
       formData.append('assignmentId', id!);
       await axios.post('/api/submissions', formData, {
         baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000',
@@ -174,6 +174,13 @@ const AssignmentDetailsPage = () => {
             {user?.role === 'teacher' && (
               <Stack direction="row" spacing={2} mt={2}>
                 <Button variant="contained" onClick={() => setEditMode(true)}>Edit</Button>
+                <Button 
+                  variant="contained" 
+                  color="secondary"
+                  onClick={() => navigate(`/assignments/${id}/submissions`)}
+                >
+                  View Submissions
+                </Button>
                 <Button variant="outlined" color="error" onClick={() => setDeleteDialog(true)}>Delete</Button>
               </Stack>
             )}

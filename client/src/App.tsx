@@ -10,7 +10,7 @@ import AssignmentDetailsPage from './pages/AssignmentDetailsPage';
 import NotificationCenterPage from './pages/NotificationCenterPage';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Link as RouterLink } from 'react-router-dom';
-
+import SubmissionsPage from './pages/SubmissionsPage';
 function App() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -58,6 +58,14 @@ function App() {
               <Route path="/assignments/:id" element={<AssignmentDetailsPage />} />
               <Route path="/notifications" element={<NotificationCenterPage />} />
             </Route>
+            <Route element={<PrivateRoute />}>
+  <Route path="/dashboard" element={<DashboardPage />} />
+  <Route path="/assignments/new" element={<NewAssignmentPage />} />
+  <Route path="/assignments/:id" element={<AssignmentDetailsPage />} />
+  <Route path="/assignments/:id/submissions" element={<SubmissionsPage />} />
+  <Route path="/notifications" element={<NotificationCenterPage />} />
+</Route>
+
             {/* Add more protected routes inside <Route element={<PrivateRoute />} /> as needed */}
           </Routes>
         </Box>
